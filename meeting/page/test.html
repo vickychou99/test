@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="../kendo.common.min.css" />
+    <link rel="stylesheet" href="../kendo.default.min.css" />
+    <link rel="stylesheet" href="../kendo.default.mobile.min.css" />
+
+    <script src="../jquery.min.js"></script>
+    <script src="../kendo.all.min.js"></script>
+    <script src="../kendo.timezones.min.js"></script>
+    <style>
+        body{
+            font-family: "微軟正黑體";
+        }
+    </style>
+
+</head>
+<body>
+<div id="example" class="k-content">
+    <div id="scheduler"></div>
+</div>
+<script>
+$(function() {
+    $("#scheduler").kendoScheduler({
+        date: new Date("2019/05/15"),
+        startTime: new Date("2019/05/15 08:00 AM"),
+        endTime: new Date("2019/05/15 07:00 PM"),
+        height: 950,
+        allDaySlot: false,
+        views: [
+            "day"
+        ],
+        dataSource: {
+            data: [
+                {
+                    meetingID: 1,
+                    title: "Call Charlie about the project",
+                    start: new Date("2019/05/15 10:30"),
+                    end: new Date("2019/05/15 11:30"),
+                    roomId: 1,
+                    attendee: 1
+                },
+                {
+                    meetingID: 2,
+                    title: "Performance review",
+                    start: new Date("2019/05/16 9:00"),
+                    end: new Date("2019/05/16 12:30"),
+                    roomId: 2,
+                    attendee: 2
+                },
+                {
+                    meetingID: 3,
+                    title: "HR Lecture",
+                    start: new Date("2019/05/15 13:00"),
+                    end: new Date("2019/05/15 14:30"),
+                    roomId: 1,
+                    attendee: 2
+                }
+            ],
+            schema: {
+                model: {
+                    id: "meetingID",
+                    fields: {
+                        meetingID: { type: "number" },
+                        title: { defaultValue: "No title", validation: { required: true } },
+                        start: { type: "date" },
+                        end: { type: "date" },
+                        roomId: { nullable: true },
+                        attendee: { defaultValue: 1 },
+                        isAllDay: { type: "boolean" }
+                    }
+                }
+            }
+        },
+        group: {
+            resources: [ "room" ]
+        },
+        resources: [
+            {
+                field: "roomId",
+                name: "room",
+                dataSource: [
+                    { text: "2樓<br />A會議室<br />[行政管理部]", value: 1, color: "#6eb3fa" },
+                    { text: "2樓<br />B會議室<br />[行政管理部]", value: 2, color: "#6eb3fa" },
+                    { text: "2樓<br />C會議室<br />[行政管理部]", value: 3, color: "#6eb3fa" },
+                    { text: "11樓<br />大會議室<br />[稽核室]", value: 4, color: "#6eb3fa" },
+                    { text: "15樓<br />第一會議室<br />[財務中心旁]", value: 5, color: "#6eb3fa" },
+                    { text: "15樓<br />第二會議室<br />[經管旁]", value: 6, color: "#6eb3fa" },
+                    { text: "15樓<br />第三會議室<br />[總經理室對面]", value: 7, color: "#6eb3fa" },
+                    { text: "15樓<br />會客室<br />[總機櫃台前]", value: 8, color: "#6eb3fa" },
+                    { text: "17樓<br />會客室(右)<br />[17樓大廳]", value: 9, color: "#6eb3fa" },
+                    { text: "17樓<br />會客室(左)<br />[17樓大廳]", value: 10, color: "#6eb3fa" },
+                ],
+                title: "Room"
+            }
+        ],
+        dataBound: function(e) {
+           $('.k-slot-cell').each(function(){
+                var $this = $(this);
+                var t = $this.text();
+                $this.html(t.replace('&lt','<').replace('&gt', '>'));
+            });
+           $('.k-scheduler-times .k-scheduler-table').each(function(){
+                var t = $(this).children().html();
+                $(this).html(t.replace('49px', '68px'));
+            });
+           
+        }
+    });
+    /*
+    function occurrencesInRangeByResource(start, end, resourceFieldName, event, resources) {
+        var scheduler = $("#scheduler").getKendoScheduler();
+
+        var occurrences = scheduler.occurrencesInRange(start, end);
+
+        var idx = occurrences.indexOf(event);
+        if (idx > -1) {
+           occurrences.splice(idx, 1);
+        }
+
+        event = $.extend({}, event, resources);
+
+        return filterByResource(occurrences, resourceFieldName, event[resourceFieldName]);
+    }
+
+    function filterByResource(occurrences, resourceFieldName, value) {
+        var result = [];
+        var occurrence;
+
+        for(var idx = 0, length = occurrences.length; idx < length; idx++) {
+            occurrence = occurrences[idx];
+            if (occurrence[resourceFieldName] === value) {
+                result.push(occurrence);
+            }
+        }
+        return result;
+    }
+    
+    function attendeeIsOccupied(start, end, event, resources) {
+        var occurrences = occurrencesInRangeByResource(start, end, "attendee", event, resources);
+        if (occurrences.length > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    function roomIsOccupied(start, end, event, resources) {
+        var occurrences = occurrencesInRangeByResource(start, end, "roomId", event, resources);
+        if (occurrences.length > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    function checkAvailability(start, end, event, resources) {
+
+        if (attendeeIsOccupied(start, end, event, resources)) {
+            setTimeout(function() {
+                alert("This person is not available in this time period.");
+            }, 0);
+
+            return false;
+        }
+
+        if (roomIsOccupied(start, end, event, resources)) {
+            setTimeout(function() {
+                alert("This room is not available in this time period.");
+            }, 0);
+
+            return false;
+        }
+
+        return true;
+    }
+    */
+});
+</script>
+
+<style>
+    .k-scheduler-footer
+    {
+        /* make them invisible */
+        display: none;
+     
+        /* prevent height and paddings from influencing the size calculations */
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    .k-si-close,.k-i-refresh{
+        display: none;
+        background:none !important;
+    }
+</style>
+
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div style="background:lightblue;padding:20px;margin-bottom:20px;">
+      <h2>test Sendmail</h2>
+      <form method="get" action='http://bpmtest.yfy.com/GAIA/bpm/webapi/Engine/SendMail' enctype='application/json'>
+            <input type="text" name='FormKind' value="YFY.FORM.EIS.001">
+            <input type="text" name='FormNo' value="159">
+            <input type="text" name='Receiver' value="201801591">
+            <input type="text" name='Subject' value="信件主旨">
+            <input type="text" name='Content' value="信件內容">
+            <input type=submit value="submit">
+        </form>
+    </div>
+     <div style="background:lightblue;padding:20px;margin-bottom:20px;">
+      <h2>test Sendmail</h2>
+      <form method="get" action='http://bpmtest.yfy.com/GAIA/bpm/webapi/Engine/SendMail' target="_blank"  enctype='application/json'>
+           <textarea>
+             {
+              "Receiver": "201801591",
+              "Subject": "信件主旨",
+              "Content": "信件內容",
+              "FormKind": "YFY.FORM.EIS.001",
+              "FormNo": 159
+            }
+
+           </textarea>
+            <input type=submit value="submit">
+        </form>
+    </div>
+    <div style="background:pink;padding:20px;margin-bottom:20px;">
+        <h2>GET EIS PIC</h2>
+        <form method="post" action='http://10.25.22.22/ERPWS/OA/WSOSHQC.asmx/DownLoadQCAttachment' target="_blank">
+            <input type="text" name='p_KeyID' value="">
+            <input type="text" name='p_SubKeysID' value="BF212018070001">
+            <input type="text" name='p_Seq' value="1">
+            <input type=submit value="submit">
+        </form>
+    </div>
+    <div style="background:pink;padding:20px;margin-bottom:20px;">
+        <h2>localhost GET PIC</h2>
+        <form method="post" action="http://localhost/EngineeringSafety/EngineeringSafety.asmx/ConvertFile" target="_blank">
+            <input type="text" name='Path' value="C:/Users/vicky.chou/Desktop/bg/1.jpg" id="Path">
+            <input type=submit value="submit">
+            <script>
+                function getPath() {
+          var b = document.getElementById('Path').value;
+              b = "C:/Users/vicky.chou/Desktop/bg/"+ b;
+              alert(b);
+            jQuery.ajax({
+                type: "POST",
+                url: "http://localhost/EngineeringSafety/EngineeringSafety.asmx/ConvertFile",
+                data: { Path : b },
+                contentType: "application/text",
+                dataType: "text",
+                success: function(dd) {
+                    alert('Success' + dd);
+                },
+                error: function(dd) {
+                    alert('There is error' + dd.responseText);
+                }
+            });
+          }
+        </script>
+        </form>
+    </div>
+    <div style="background:lightgreen;padding:20px;margin-bottom:20px;">
+        <h2>localhost getEisDataCreateBpmForm</h2>
+        <form method="post" action='http://localhost/EngineeringSafety/EngineeringSafety.asmx/getEisDataCreateBpmForm' target="_blank">
+            <input type="text" name='eisData' value="{'SafetyQCNo':'GF112170001','CompanyID':'003','CompanyName':'消費品實業(股)','ApplyOPName':'30工安室(楊梅)','Apply_Emp_ID':'201801591','Manager_Emp_ID':'201801591','CodeOSHQCKind':'1','QCKindName':'工安稽核','CodeOSHQC1':'12','QC1Name':'內部稽核','CodeOSHQC2':'1201','QC2Name':'投控職安衛平台','CodeOSHRiskLevel':'A','RiskLevelName':'第一級：虛驚事件','SafetyQCDate':'2018/09/07','PlanDate':'2018/09/20','HR_DeptID':'CPG-YM-MMO','HR_DeptName':'廠務室','HR_Emp_ID':'198900132','HR_Emp_Name':'陳進財 主任','Area1Name':'出貨區','Area2Name':'出貨區','MissingName':'機械設備','QCDocNo':'違反條文或程序書','MissingMemo':'缺失事項說明ABCDEFG','QCResult':'缺失內容','AttachFlag':'N','AttachFilePath':'Y','Status':'20','StatusName':'主管確認','CreateUser':'周文琪','CreateTime':'2018-09-07 15:42:20.527'}">
+            <input type=submit value="submit">
+        </form>
+    </div>
+    <div style="background:lightgreen;padding:20px;margin-bottom:20px;">
+        <h2>yfytest getEisDataCreateBpmForm</h2>
+        <form method="post" action='http://bpmtest.yfy.com/YFY_GAIA/EngineeringSafety/EngineeringSafety.asmx/getEisDataCreateBpmForm' target="_blank">
+            <input type="text" name='eisData' value="{'SafetyQCNo':'GF1A2170001','CompanyID':'003','CompanyName':'消費品實業(股)','ApplyOPName':'30工安室(楊梅)','Apply_Emp_ID':'201801591','Manager_Emp_ID':'201801591','CodeOSHQCKind':'1','QCKindName':'工安稽核','CodeOSHQC1':'12','QC1Name':'內部稽核','CodeOSHQC2':'1201','QC2Name':'投控職安衛平台','CodeOSHRiskLevel':'A','RiskLevelName':'第一級：虛驚事件','SafetyQCDate':'2018/09/07','PlanDate':'2018/09/20','HR_DeptID':'CPG-YM-MMO','HR_DeptName':'廠務室','HR_Emp_ID':'198900132','HR_Emp_Name':'陳進財 主任','Area1Name':'出貨區','Area2Name':'出貨區','MissingName':'機械設備','QCDocNo':'違反條文或程序書','MissingMemo':'缺失事項說明ABCDEFG','QCResult':'缺失內容','AttachFlag':'N','AttachFilePath':'Y','Status':'20','StatusName':'主管確認','CreateUser':'周文琪','CreateTime':'2018-09-07 15:42:20.527'}">
+            <input type=submit value="submit">
+        </form>
+    </div>
+    <div style="background:#ccc;padding:20px;">
+        <h2>localhost getEisDataCreateBpmForm</h2>
+        <form method="post" action='http://localhost/EngineeringSafety/EngineeringSafety.asmx/getEisDataCreateBpmForm' target="_blank">
+            <input type="text" name='SafetyQCNo' value="GF112018090001">
+            <input type="text" name='CompanyID' value="003">
+            <input type="text" name='CompanyName' value="消費品實業(股)">
+            <input type="text" name='ApplyOPName' value="30工安室(楊梅)">
+            <input type="text" name='Apply_Emp_ID' value="201400188">
+            <input type="text" name='Manager_Emp_ID' value="201400188">
+            <input type="text" name='CodeOSHQCKind' value="1">
+            <input type="text" name='QCKindName' value="工安稽核">
+            <input type="text" name="CodeOSHQC1" value="12">
+            <input type="text" name="QC1Name" value="內部稽核">
+            <input type="text" name="CodeOSHQC2" value="1201">
+            <input type="text" name="QC2Name" value="投控職安衛平台">
+            <input type="text" name="CodeOSHRiskLevel" value="A">
+            <input type="text" name="RiskLevelName" value="第一級：虛驚事件">
+            <input type="text" name="SafetyQCDate" value="2018/09/07">
+            <input type="text" name="PlanDate" value="2018/09/20">
+            <input type="text" name="HR_DeptID" value="CPG-YM-MMO">
+            <input type="text" name="HR_DeptName" value="廠務室">
+            <input type="text" name="HR_Emp_ID" value="199100483">
+            <input type="text" name="HR_Emp_Name" value="陳進財 主任">
+            <input type="text" name="Area1Name" value="出貨區">
+            <input type="text" name="Area2Name" value="出貨區">
+            <input type="text" name="MissingName" value="機械設備">
+            <input type="text" name="QCDocNo" value="違反條文或程序書"> -->非必填
+            <input type="text" name="MissingMemo" value="缺失事項說明ABCDEFG">
+            <input type="text" name="QCResult" value="缺失內容"> -->非必填
+            <input type="text" name="AttachFlag" value="N">
+            <input type="text" name="AttachFilePath" value="Y">
+            <input type="text" name="Status" value="20">
+            <input type="text" name="StatusName" value="主管確認">
+            <input type="text" name="CreateUserName" value="周文琪">
+            <input type="text" name="CreateTime" value="2018-09-07 15:42:20.527">
+            <input type=submit value="submit">
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="background:pink;padding:20px;">
+        <h2>Yfy Test</h2>
+        <form method="post" action='http://bpmtest.yfy.com/YFY_GAIA/EngineeringSafety/EngineeringSafety.asmx/EisPostJsonData' target="_blank">
+            <input type="text" name='SafetyQCNo' value="GF112018090001">
+            <input type="text" name='CompanyID' value="003">
+            <input type="text" name='CompanyName' value="消費品實業(股)">
+            <input type="text" name='ApplyOPName' value="30工安室(楊梅)">
+            <input type="text" name='Apply_Emp_ID' value="201400188">
+            <input type="text" name='Manager_Emp_ID' value="201400188">
+            <input type="text" name='CodeOSHQCKind' value="1">
+            <input type="text" name='QCKindName' value="工安稽核">
+            <input type="text" name="CodeOSHQC1" value="12">
+            <input type="text" name="QC1Name" value="內部稽核">
+            <input type="text" name="CodeOSHQC2" value="1201">
+            <input type="text" name="QC2Name" value="投控職安衛平台">
+            <input type="text" name="CodeOSHRiskLevel" value="A">
+            <input type="text" name="RiskLevelName" value="第一級：虛驚事件">
+            <input type="text" name="SafetyQCDate" value="2018/09/07">
+            <input type="text" name="PlanDate" value="2018/09/20">
+            <input type="text" name="HR_DeptID" value="CPG-YM-MMO">
+            <input type="text" name="HR_DeptName" value="廠務室">
+            <input type="text" name="HR_Emp_ID" value="199100483">
+            <input type="text" name="HR_Emp_Name" value="陳進財 主任">
+            <input type="text" name="Area1Name" value="出貨區">
+            <input type="text" name="Area2Name" value="出貨區">
+            <input type="text" name="MissingName" value="機械設備">
+            <input type="text" name="QCDocNo" value="違反條文或程序書">
+            <input type="text" name="MissingMemo" value="缺失事項說明ABCDEFG">
+            <input type="text" name="QCResult" value="缺失內容">
+            <input type="text" name="AttachFlag" value="N">
+            <input type="text" name="AttachFilePath" value="Y">
+            <input type="text" name="Status" value="20">
+            <input type="text" name="StatusName" value="主管確認">
+            <input type="text" name="CreateUserName" value="周文琪">
+            <input type="text" name="CreateTime" value="2018-09-07 15:42:20.527">
+            <input type=submit value="submit">
+        </form>
+    </div>
+    <br>
+    <br>
+    <div style="background:#ccc;padding:20px;">
+        <h2>localhost</h2>
+        <form method="post" action='http://localhost/EngineeringSafety/EngineeringSafety.asmx/getEisDataCreateBpmForm' target="_blank">
+            <input type="text" name='eisdata' value="[{'createid': '4e0ed2ef-8095-4768-870b-36080fd45dfa','createname': '周文琪','COMPANYNAME': 'Y01-003_永豐餘工業用紙股份有限公司','FACTORYNAME': '桃園廠','STATUS_ID': 1,'STATUS_TEXT': '工安稽核','CREATEUSER': '周文琪','APPLYOPID': '元信達 / BPM組','CODEOSHQC1': '風險評估','CODEOSHQC2': '危害與可操作分析','PLANDATE': '2018-09-28 00:00:00.000','OSHAREA1': '分條區','OSHAREA2': '裁切機','CODEOSHMISSING': '機械設備','DEPTID': '廠公安','CODEOSHRISKLEVEL': 1,'CODEOSHRISKLEVEL_text': '第一級：[虛驚事件]','SAFETYQCDATE': '2018-09-07 00:00:00.000','QCDOCNO': '違反條文或程序書','MISSINGMEMO': '不符合事項現況描述','QCRESULT': '缺失內容'}]">
+            <input type=submit value="submit">
+        </form>
+    </div>
+    <br>
+    <br>
+    <div style="background:#ccc;padding:20px;">
+        <h2>BPM TEST</h2>
+        <form method="post" action='http://bpmtest.yfy.com/YFY_GAIA/EngineeringSafety/EngineeringSafety.asmx/GetDataTest' target="_blank">
+            <input type="text" name='eisdata' value="[{'createid': '4e0ed2ef-8095-4768-870b-36080fd45dfa','createname': '周文琪','COMPANYNAME': 'Y01-003_永豐餘工業用紙股份有限公司','FACTORYNAME': '桃園廠','STATUS_ID': 1,'STATUS_TEXT': '工安稽核','CREATEUSER': '周文琪','APPLYOPID': '元信達 / BPM組','CODEOSHQC1': '風險評估','CODEOSHQC2': '危害與可操作分析','PLANDATE': '2018-09-28 00:00:00.000','OSHAREA1': '分條區','OSHAREA2': '裁切機','CODEOSHMISSING': '機械設備','DEPTID': '廠公安','CODEOSHRISKLEVEL': 1,'CODEOSHRISKLEVEL_text': '第一級：[虛驚事件]','SAFETYQCDATE': '2018-09-07 00:00:00.000','QCDOCNO': '違反條文或程序書','MISSINGMEMO': '不符合事項現況描述','QCRESULT': '缺失內容'}]">
+            <input type=submit value="submit">
+        </form>
+    </div>
+    <br>
+    <br>
+    <div style="background:#ccc;padding:20px;">
+        <h2>Update Eis Data</h2>
+        <form method="post" action='http://10.25.22.22/ERPWS/OA/WSOSHQC.asmx/updOSHQCLog_byBPM ' target="_blank">
+            <input type="text" name="p_SafetyQCNo" value="">
+            <input type="text" name="p_BPMQCNo" value="45">
+            <input type="text" name="p_BPMQCSeq" value="11">
+            <input type="text" name="p_HR_DeptID" value="CHP-CT-MGT">
+            <input type="text" name="p_HR_Emp_ID" value="201801591">
+            <input type="text" name="p_HR_Emp_Name" value="p_HR_Emp_Name">
+            <input type="text" name="p_LogSignDate" value="2018-09-17 09:19:13.000">
+            <input type="text" name="p_LogEventDate" value="2018-09-17 09:19:13.000">
+            <input type="text" name="p_EventFlag" value="p_EventFlag">
+            <input type="text" name="p_LogQCResult" value="p_LogQCResult">
+            <input type="text" name="p_LogMissingMemo" value="p_LogMissingMemo">
+            <input type="text" name="p_AttachFlag" value="p_AttachFlag">
+            <input type="text" name="p_BPMFilePath" value="p_BPMFilePath">
+            <input type="text" name="p_QCISONo" value="44">
+            <input type="text" name="p_PlanDate" value="2018-09-17 09:19:13.000">
+            <input type="text" name="p_CloseDate" value="2018-09-17 09:19:13.000">
+            <input type="text" name="p_BPMStatus" value="1">
+            <input type="text" name="p_BPMStatusName" value="權責主管指派">
+            <input type=submit value="submit">
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    新增測試
+    <form method=GET action='http://bpmtest.yfy.com/GAIA/bpm/webapi/Engine/CreateForm' target="_blank">
+        <input type="text" name='formkind' value="YFY.FORM.1013">
+        <input type="text" name='applyer' value="7abc4339-8184-4e19-8bcc-b2bb2c639305">
+        <input type=submit value="submit">
+    </form>
+    <br>
+    ApplyForm 測試
+    <form method=post action='http://bpmtest.yfy.com/GAIA/bpm/webapi/Engine/ApplyForm' target="_blank">
+        <input type="text" name='formkind' value="YFY.FORM.1013"><br>
+        <textarea name='formPackage' rows="10" cols="100">
+     <BPM>
+     <Head>
+     <FormKind>YFY.FORM.1013</FormKind>
+     <Applicant>4e0ed2ef-8095-4768-870b-36080fd45dfa</Applicant>
+     <Filler>4e0ed2ef-8095-4768-870b-36080fd45dfa</Filler>
+        <FormNo>0</FormNo>
+        <PackageID>120</PackageID>
+        <Type>1</Type>
+        <Muid></Muid>
+    </Head>
+    <Body>
+        <Table Target='YFYFORM1013' DataType='1'>
+            <Item FieldName="F1">周文琪</Item>
+        </Table>
+    </Body>
+    </BPM>
+     </textarea><br>
+        <input type=submit value="submit">
+    </form>
+    <div style="background:pink">
+        <img src="">
+   </div>
+        <hr>
+        <br>
+        <a href = "http://localhost:57134/files/filedownloadGAIA?s3=1&formkind=YFY.FORM.CONTRACT.0002&formNo=808&empId=7abc4339-8184-4e19-8bcc-b2bb2c639305">GAIA download</a>
+        <div id="fm_ischangemanager" data-area="main" class="bg-fm-row">
+            <span id="fm_ischangemanager_content_container"></span>
+            <input type="hidden" id="contentsIschangemanager" name="contentsIschangemanager" value="" data-area="main" data-bg-val-tip="{'holder':'#contentErrorBoxIschangemanager'}" data-bg-val="{ required:true, messages:{ required:'是否變更不能為空' } } " />
+            <div id="contentErrorBoxIschangemanager" style="display: inline-block;"></div>
+        </div>
+        <script>
+        $('#fm_ischangemanager').append(
+            "<input type='hidden' id='ch_selectionmanager' name='ch_selectionmanager' value='XX'>"
+        );
+        /*
+    var o = {
+        'FormNo': '868'
+    };
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:57134/Law/WS_LawSys.asmx/GetSelectionmanagerLevel",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(o),
+        dataType: "json",
+        success: function (jsonObj) {
+            if (jsonObj != '') {
+               bg.warning('', jsonObj.d);
+            }
+
+        }, error: function (r) {
+            bg.warning('', '重新選擇最終權責主管讀取資料錯誤1，請聯繫管理員!  -' + r.responseText);
+        },
+        failure: function (r) {
+            bg.warning('', '重新選擇最終權責主管讀取資料錯誤2，請聯繫管理員!  -' + r);
+        }
+    });
+*/
+
+        $(document).ready(function() {
+            $("button").click(function() {
+                alert("868");
+                $.post("http://localhost:57134/Law/WS_LawSys.asmx/UpdateContractFilename", {
+                        FormNo: "868"
+                    },
+                    function(data, status) {
+                        alert("数据：" + data + "\n状态：" + status);
+                    });
+            });
+        });
+
+
+
+        /* //string fileName, string bpmid, string R_item, string filepath, string showname
+   var k = {
+                        'FormNo': '808'
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:57134/Law/WS_LawSys.asmx/UpdateContractFilename",
+                        contentType: "application/json; charset=utf-8",
+
+                        data: JSON.stringify(k),
+                        dataType: "json",
+                        success: function (jsonObj) { 
+            alert("OK")
+            }
+                    });
+          
+  $(function() {
+    $("#tvdownload").on("click",function(e) {
+      e.preventDefault(); // cancel the link itself
+      $.post("http://localhost:57134/files/filedownload",
+        {fileName:"7fc71490-bced-4738-a241-c960aa810e43.pdf",
+         bpmid:"ander.liao",
+         R_item:"",
+         filepath:"C:/temp/2018/08/",
+         showname:"post_test.pdf"},
+         function(data) {
+           alert(data);
+        });
+    });
+  });
+  */
+        function datapost() {
+            alert("datapost");
+            $.post("http://localhost:57134/files/filedownload", {
+                fileName: "7fc71490-bced-4738-a241-c960aa810e43.pdf",
+                bpmid: "ander.liao",
+                R_item: "",
+                filepath: "C:/temp/2018/08/",
+                showname: "post_test.pdf"
+            })
+        }
+        </script>
+</body>
+
+</html>
